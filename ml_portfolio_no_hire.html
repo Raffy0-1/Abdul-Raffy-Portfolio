@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ML ENGINEER | Portfolio</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;800&amp;family=Epilogue:wght@400;700&amp;family=Manrope:wght@300;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary-fixed-variant": "#e2e2e2",
+                        "on-error-container": "#410002",
+                        "on-primary-container": "#ffffff",
+                        "outline": "#777777",
+                        "on-secondary-container": "#1c1b1b",
+                        "surface-bright": "#f9f9f9",
+                        "primary": "#000000",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "primary-container": "#3b3b3b",
+                        "on-primary-fixed": "#ffffff",
+                        "surface-variant": "#e2e2e2",
+                        "secondary": "#5f5e5e",
+                        "background": "#f9f9f9",
+                        "surface-dim": "#dadada",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#e8e8e8",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#e3e2e2",
+                        "primary-fixed": "#5e5e5e",
+                        "on-surface-variant": "#474747",
+                        "inverse-surface": "#2f3131",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-primary": "#e2e2e2",
+                        "inverse-primary": "#c6c6c6",
+                        "tertiary": "#3b3b3c",
+                        "on-surface": "#1a1c1c",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#d6d4d3",
+                        "tertiary-fixed-dim": "#464747",
+                        "on-background": "#1a1c1c",
+                        "tertiary-fixed": "#5e5e5e",
+                        "secondary-fixed": "#c8c6c5",
+                        "surface-container-low": "#f3f3f4",
+                        "on-tertiary-fixed": "#ffffff",
+                        "on-secondary-fixed-variant": "#3c3b3b",
+                        "secondary-fixed-dim": "#adabaa",
+                        "surface-tint": "#5e5e5e",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#e3e2e2",
+                        "surface-container": "#eeeeee",
+                        "outline-variant": "#c6c6c6",
+                        "inverse-on-surface": "#f0f1f1",
+                        "primary-fixed-dim": "#474747",
+                        "tertiary-container": "#747474",
+                        "on-tertiary-container": "#ffffff",
+                        "surface": "#f9f9f9"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Montserrat", "sans-serif"],
+                        "body": ["Montserrat", "sans-serif"],
+                        "label": ["Montserrat", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Montserrat", sans-serif
+        }
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48
+        }
+        .split-headline span:nth-child(1) {
+            font-weight: 800
+        }
+        .split-headline span:nth-child(2) {
+            font-weight: 300
+        }
+        .woodgrain-overlay {
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBRUnaZw-TxSxMGHEfZYn0chBG7za-F52r2MR48ysrVqiLSZWRHo7omZ2yiiVEIWv4r4IPA1vt00NmJQBgzyM1aJdyzEmXnoA3mUFUS5uFXYx1UxB9tLNLs_-vW2IRXtnun46FQKty5Yeku29cNTG3-uAUVi7TYOzw650-HT89lerFaFvXZ7IhhTHME-9KgjwhK6gPjCJ1dVdI7T7AE3ATS527TRgSkwrVbQjzpFyIIrhUVnPHN5X27_rEl55vfSRr12pl_E3hGKGdg);
+            mix-blend-mode: multiply;
+            opacity: 0.1
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800 flex justify-between items-center h-16 px-8 max-w-full mx-auto transition-all duration-300">
+<div class="text-lg tracking-widest text-black dark:text-white flex items-center gap-2 font-extrabold">
+            ML ENGINEER
+        </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-black dark:text-white border-b-2 border-black dark:border-white pb-1 font-bold text-[12px] uppercase tracking-[0.1em] transition-colors duration-150" href="#home">HOME</a>
+<a class="text-gray-500 dark:text-gray-400 font-medium text-[12px] uppercase tracking-[0.1em] hover:text-black dark:hover:text-white transition-colors duration-150" href="#about">ABOUT</a>
+<a class="text-gray-500 dark:text-gray-400 font-medium text-[12px] uppercase tracking-[0.1em] hover:text-black dark:hover:text-white transition-colors duration-150" href="#skills">SKILLS</a>
+<a class="text-gray-500 dark:text-gray-400 font-medium text-[12px] uppercase tracking-[0.1em] hover:text-black dark:hover:text-white transition-colors duration-150" href="#projects">PROJECTS</a>
+<a class="text-gray-500 dark:text-gray-400 font-medium text-[12px] uppercase tracking-[0.1em] hover:text-black dark:hover:text-white transition-colors duration-150" href="#experience">EXPERIENCE</a>
+<a class="text-gray-500 dark:text-gray-400 font-medium text-[12px] uppercase tracking-[0.1em] hover:text-black dark:hover:text-white transition-colors duration-150" href="#contact">CONTACT</a>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="min-h-screen flex flex-col md:flex-row pt-16" id="home">
+<div class="w-full md:w-1/2 flex flex-col justify-center px-8 md:px-16 lg:px-24 py-20 bg-surface">
+<h1 class="text-6xl md:text-7xl lg:text-8xl leading-tight mb-8">
+<span class="block font-extrabold uppercase tracking-tighter">
+<span class="font-extrabold">LET'S</span> <span class="font-light">BUILD</span>
+</span>
+<span class="block font-light uppercase tracking-tighter">SOMETHING</span>
+<span class="block font-extrabold uppercase tracking-tighter">INTELLIGENT</span>
+<span class="block font-light uppercase tracking-tighter text-on-surface-variant">TOGETHER</span>
+</h1>
+<p class="text-on-surface-variant text-lg md:text-xl font-light mb-12 max-w-lg leading-relaxed">
+                A Machine Learning Engineer based in Pakistan, architecting scalable neural systems and data pipelines to solve complex real-world problems.
+            </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="bg-black text-white px-10 py-4 font-bold uppercase text-xs tracking-[0.2em] hover:bg-white hover:text-black border-2 border-black transition-all duration-150 text-center" href="#projects">
+                    VIEW MY WORK
+                </a>
+<a class="bg-transparent text-black px-10 py-4 font-bold uppercase text-xs tracking-[0.2em] border-2 border-black hover:bg-black hover:text-white transition-all duration-150 text-center" href="#contact">
+                    LET'S TALK
+                </a>
+</div>
+</div>
+<div class="w-full md:w-1/2 relative bg-surface-container-low min-h-[500px]">
+<img alt="Portrait" class="absolute inset-0 w-full h-full object-cover grayscale brightness-90" data-alt="striking black and white editorial portrait of a professional man with intense expression, sharp side lighting, minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ06YowLyzyYmg5OB4bl0Ujlg9S5qvjlzWBU1cZe9NtOYyggeHwaF0f1w7R9FzKT6HIRVLMSdUZggWez2MIkjUyiq-xP-iFT-VFeYNQKAzrwdMyvwC9s-9GBweG-lLmaHROFeWp0mX5SpZQUEdOCcoGfyIS6nws4q6WfBygaBx_RSaxsVdIDmpcqhVtkR4-6Hmlm-Zv2FygB_oosTJlKueyYpjDZ5ot87PNQdjlPMFqXKIdQd5lbNemE2AtJ6nu4x-0yEmWwRaZ2s-"/>
+<div class="absolute inset-0 woodgrain-overlay pointer-events-none"></div>
+</div>
+</section>
+<!-- About Me Section -->
+<section class="py-32 px-8 md:px-16 lg:px-24 bg-white grid grid-cols-1 md:grid-cols-2 gap-20 items-start" id="about">
+<div>
+<h2 class="text-4xl md:text-5xl mb-12 tracking-[0.08em] uppercase">
+<span class="font-extrabold">AB</span><span class="font-light">OUT ME</span>
+</h2>
+<div class="space-y-6 text-on-surface-variant font-light text-lg leading-relaxed mb-12">
+<p>Driven by the intersection of mathematics and code, I specialize in building end-to-end Machine Learning systems. My journey in AI started in Pakistan, where I've spent the last 5 years honing my skills in deep learning and large-scale data engineering.</p>
+<p>I believe that every byte of data tells a story, and my role is to give that story a voice through predictive modeling and rigorous MLOps practices.</p>
+</div>
+<button class="border-2 border-black px-8 py-3 font-bold uppercase text-[10px] tracking-[0.2em] hover:bg-black hover:text-white transition-all duration-150">
+                DOWNLOAD CV
+            </button>
+</div>
+<div class="space-y-10" id="skills">
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-[12px] font-bold tracking-[0.1em] uppercase">Python</span>
+<span class="text-[12px] font-medium uppercase tracking-[0.1em]">95%</span>
+</div>
+<div class="h-[2px] bg-surface-container-highest w-full relative">
+<div class="absolute h-[2px] bg-black" style="width: 95%;"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-[12px] font-bold tracking-[0.1em] uppercase">Machine Learning</span>
+<span class="text-[12px] font-medium uppercase tracking-[0.1em]">90%</span>
+</div>
+<div class="h-[2px] bg-surface-container-highest w-full relative">
+<div class="absolute h-[2px] bg-black" style="width: 90%;"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-[12px] font-bold tracking-[0.1em] uppercase">Deep Learning</span>
+<span class="text-[12px] font-medium uppercase tracking-[0.1em]">85%</span>
+</div>
+<div class="h-[2px] bg-surface-container-highest w-full relative">
+<div class="absolute h-[2px] bg-black" style="width: 85%;"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-[12px] font-bold tracking-[0.1em] uppercase">MLOps</span>
+<span class="text-[12px] font-medium uppercase tracking-[0.1em]">75%</span>
+</div>
+<div class="h-[2px] bg-surface-container-highest w-full relative">
+<div class="absolute h-[2px] bg-black" style="width: 75%;"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-[12px] font-bold tracking-[0.1em] uppercase">Data Engineering</span>
+<span class="text-[12px] font-medium uppercase tracking-[0.1em]">70%</span>
+</div>
+<div class="h-[2px] bg-surface-container-highest w-full relative">
+<div class="absolute h-[2px] bg-black" style="width: 70%;"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-32 relative overflow-hidden bg-[#2A2A2A] text-white">
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<img alt="Workplace" class="w-full h-full object-cover grayscale" data-alt="moody high-angle shot of a clean minimalist developer desk with dual monitors and mechanical keyboard in a dark studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxGYdtoUdu_03VsBFGseHb_LzmH_01z83isGL2KzR8KPkxQD41ubuyv8AES1VPQTY0qdGEfoBrwRffdu6snRdFMNjAtKIJVevtkNes7TUvkvfHxha1jk4FNh0zYpMytQeFHCmQznELpGOsXou-Oznp0FNgwX8rrW-ekWRZqjdW3_kofkxw4gr50ou_k6fY_9ais0BYLsWM8STfjng-6naeStTEjK5tRT0cn8b4saAEMiqPpuBprMXBYCruO6DWHekfdG0PnOWh_-kk"/>
+</div>
+<div class="relative z-10 px-8 md:px-16 lg:px-24">
+<div class="mb-20">
+<h2 class="text-4xl md:text-5xl tracking-[0.08em] uppercase inline-block">
+<span class="font-extrabold">WHA</span><span class="font-light">T I DO</span>
+</h2>
+<div class="mt-4 flex flex-col gap-1">
+<div class="h-[2px] w-48 bg-white"></div>
+<div class="h-[2px] w-32 bg-white"></div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+<!-- Service Cards -->
+<div class="p-10 border border-white/10 hover:bg-white hover:text-black transition-all duration-300 group">
+<span class="material-symbols-outlined text-4xl mb-6 block" data-icon="neurology">neurology</span>
+<h3 class="text-xl font-bold uppercase mb-4 tracking-wider">Model Development</h3>
+<p class="font-light opacity-60 group-hover:opacity-100 text-sm leading-relaxed">Designing custom neural architectures and robust statistical models tailored for specialized domain data.</p>
+</div>
+<div class="p-10 border border-white/10 hover:bg-white hover:text-black transition-all duration-300 group">
+<span class="material-symbols-outlined text-4xl mb-6 block" data-icon="settings_input_component">settings_input_component</span>
+<h3 class="text-xl font-bold uppercase mb-4 tracking-wider">MLOps</h3>
+<p class="font-light opacity-60 group-hover:opacity-100 text-sm leading-relaxed">Automating the lifecycle of ML models from training to deployment with CI/CD and drift monitoring.</p>
+</div>
+<div class="p-10 border border-white/10 hover:bg-white hover:text-black transition-all duration-300 group">
+<span class="material-symbols-outlined text-4xl mb-6 block" data-icon="database">database</span>
+<h3 class="text-xl font-bold uppercase mb-4 tracking-wider">Data Engineering</h3>
+<p class="font-light opacity-60 group-hover:opacity-100 text-sm leading-relaxed">Building high-performance ETL pipelines and distributed storage solutions for massive datasets.</p>
+</div>
+<div class="p-10 border border-white/10 hover:bg-white hover:text-black transition-all duration-300 group">
+<span class="material-symbols-outlined text-4xl mb-6 block" data-icon="science">science</span>
+<h3 class="text-xl font-bold uppercase mb-4 tracking-wider">Research</h3>
+<p class="font-light opacity-60 group-hover:opacity-100 text-sm leading-relaxed">Exploratory analysis and academic-level implementation of cutting-edge AI breakthroughs.</p>
+</div>
+<div class="p-10 border border-white/10 hover:bg-white hover:text-black transition-all duration-300 group">
+<span class="material-symbols-outlined text-4xl mb-6 block" data-icon="chat_bubble">chat_bubble</span>
+<h3 class="text-xl font-bold uppercase mb-4 tracking-wider">NLP / LLM</h3>
+<p class="font-light opacity-60 group-hover:opacity-100 text-sm leading-relaxed">Fine-tuning large language models and developing RAG systems for intelligent information retrieval.</p>
+</div>
+<div class="p-10 border border-white/10 hover:bg-white hover:text-black transition-all duration-300 group">
+<span class="material-symbols-outlined text-4xl mb-6 block" data-icon="bar_chart">bar_chart</span>
+<h3 class="text-xl font-bold uppercase mb-4 tracking-wider">Visualization</h3>
+<p class="font-light opacity-60 group-hover:opacity-100 text-sm leading-relaxed">Translating complex model outputs into actionable business insights through interactive dashboards.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section class="py-32 px-8 md:px-16 lg:px-24 bg-white" id="projects">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+<h2 class="text-4xl md:text-5xl tracking-[0.08em] uppercase">
+<span class="font-extrabold">MY</span><span class="font-light"> WORKS</span>
+</h2>
+<div class="flex flex-wrap gap-6">
+<button class="text-[10px] font-bold tracking-[0.2em] uppercase border-b-2 border-black pb-1">ALL</button>
+<button class="text-[10px] font-bold tracking-[0.2em] uppercase text-gray-400 hover:text-black transition-colors">VISION</button>
+<button class="text-[10px] font-bold tracking-[0.2em] uppercase text-gray-400 hover:text-black transition-colors">NLP</button>
+<button class="text-[10px] font-bold tracking-[0.2em] uppercase text-gray-400 hover:text-black transition-colors">MLOPS</button>
+</div>
+</div>
+<div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-8 space-y-8">
+<!-- Project 1 -->
+<div class="relative group overflow-hidden break-inside-avoid bg-surface-container-low">
+<img alt="Sentiment Analysis" class="w-full grayscale hover:grayscale-0 transition-all duration-500" data-alt="digital representation of data streaming and sentiment mapping with abstract blue and violet nodes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa8YbkDqAs1JzbAXxsgdM69CUcfFLoNW8YKa6vX1LcR43EHgqvsqmeGRCKWzw8FKzrd7wBXT30xktE6QpZAkm9ZCLTYeqIWaw-dRYYQaSbVeR6-JlQpNm2xTn2SMKPKgAnTkt7QdnG_czg7qWpstPu_M8cRs6Qbx3JxOiE3KXGwKGPIzxTKHNRvUqkRBxpB8CT76CpHeKG4JjwMKEm27-IBfF9iySp1m2TKPAW9PstXHqNGlor3hMNBahXsveWdj82Iv6zMFgDDa-E"/>
+<div class="p-6 bg-white">
+<h3 class="font-bold uppercase tracking-widest text-sm mb-2">Sentiment Analysis</h3>
+<div class="flex flex-wrap gap-2">
+<span class="text-[8px] border border-black px-2 py-1 uppercase tracking-widest font-medium">BERT</span>
+<span class="text-[8px] border border-black px-2 py-1 uppercase tracking-widest font-medium">PyTorch</span>
+</div>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="relative group overflow-hidden break-inside-avoid bg-surface-container-low">
+<img alt="Object Detection" class="w-full grayscale hover:grayscale-0 transition-all duration-500" data-alt="city street viewed through a digital overlay of detection boxes and probability scores in high contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuqLYwKCZzGYMuSA3V4OquoyIFvanVUJkl4JJRMfEYdTw1ySXvYlunKTpqTz67Te0yA61Jw5Dy4kE7b0sps0kch2L7TP1BXbdRLBjk5zNb5ufJubi0GWhmyR-lFnXiuOffpq9xpRurBRd_xPF1QUG1Zxu6n_x6piE56w-PJelvFbGL0meMscI2zTRPeLVATb9X1JRBNcc6Gl8G8eSN3apVVtMAAPH-iMDnJBaj_ukroHQp4UKjiD7VdIT-LUmIbdJXITlLw0YX4Zkh"/>
+<div class="p-6 bg-white">
+<h3 class="font-bold uppercase tracking-widest text-sm mb-2">Object Detection</h3>
+<div class="flex flex-wrap gap-2">
+<span class="text-[8px] border border-black px-2 py-1 uppercase tracking-widest font-medium">YOLOv8</span>
+<span class="text-[8px] border border-black px-2 py-1 uppercase tracking-widest font-medium">Opencv</span>
+</div>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="relative group overflow-hidden break-inside-avoid bg-surface-container-low">
+<img alt="Sales Forecasting" class="w-full grayscale hover:grayscale-0 transition-all duration-500" data-alt="abstract business charts and statistical graphs with clean white lines on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0llpG8BX9c6CLoWYSLday2wg_GFzEb2UQ9Zq1eP1r-C-o7jZKnFicEGt2zie1IcliTX-s6w75M5txceMeEwSNPCTdVnKAf9eQEOlHZVSqUTG5IQaBK9XaB2MJEB04q5nRheTIhrS1tYNvOC_TrYVfVPfavlSlwMgBX0sl-tUh85RJx68a4-NWLG3GqSjUlz65sVvtDouUfAXs3pYBOUsTVzF5npiODeyj2S7VydJbAI_UD5GO37YQFu1mwCKH4Cbvf5SV8uYwEyAU"/>
+<div class="p-6 bg-white">
+<h3 class="font-bold uppercase tracking-widest text-sm mb-2">Sales Forecasting</h3>
+<div class="flex flex-wrap gap-2">
+<span class="text-[8px] border border-black px-2 py-1 uppercase tracking-widest font-medium">XGBoost</span>
+<span class="text-[8px] border border-black px-2 py-1 uppercase tracking-widest font-medium">Pandas</span>
+</div>
+</div>
+</div>
+<!-- Project 4 -->
+<div class="relative group overflow-hidden break-inside-avoid bg-surface-container-low">
+<img alt="RAG Chatbot" class="w-full grayscale hover:grayscale-0 transition-all duration-500" data-alt="close up of glowing circuit board and neural network synapses representing generative AI" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDBwY2ha_YLvoySjmyQy5H4__cNww3sweIhchQwG5L0EGFMMD1kS_OWpiPyyP9rFWjzwK8kwExQfT_4UVwQCEivSLjvzc2GlvoIm5ihOZz3OvmNTJQY8vrxq0GS3LlhTWsBxqhcjntbw-oqO5qA-2kdA3f7DGX2tzBJkRQK9apNwHY_uZ0-EixZlCbb7WW7Mxsq1jskxmRMZPCMDvUJfJqg79gLq9iFI9HAdxNxmJyIFTU3eb7yoLuA_PZ2LAonMJl91OhujwmWJ8v"/>
+<div class="p-6 bg-white">
+<h3 class="font-bold uppercase tracking-widest text-sm mb-2">RAG Chatbot</h3>
+<div class="flex flex-wrap gap-2">
+<span class="text-[8px] border border-black px-2 py-1 uppercase tracking-widest font-medium">LangChain</span>
+<span class="text-[8px] border border-black px-2 py-1 uppercase tracking-widest font-medium">Pinecone</span>
+</div>
+</div>
+</div>
+<!-- Project 5 -->
+<div class="relative group overflow-hidden break-inside-avoid bg-surface-container-low">
+<img alt="MLOps Pipeline" class="w-full grayscale hover:grayscale-0 transition-all duration-500" data-alt="array of sleek high-tech server racks in a cold-lit data center with glowing status lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArmsWR2OdVjUM_aJvqcO1NHZGX5p_qBy9pSZZgMVW5_vM1U_cATFZ-gEJyfWX6iSCbmOCEQQmDGClpjCCi4MpQ8ygrjR-yKFwpTGHV3-QOH0h7i9xRGKoNB77lDYp1Q0KWLof7CnV87mOiQcU_X8w1ks-X-DsUsX2kOWTlKme8LaJuiGVj9AIOxC8DrKw19qrbsaaVY7EmwYc19KLj2Hxh-mLJSb6pHVbv4lN0j1qXy81NJH3ncsYsZiPk_J6DFTdEA3xFOBiy95Lp"/>
+<div class="p-6 bg-white">
+<h3 class="font-bold uppercase tracking-widest text-sm mb-2">MLOps Pipeline</h3>
+<div class="flex flex-wrap gap-2">
+<span class="text-[8px] border border-black px-2 py-1 uppercase tracking-widest font-medium">Kubeflow</span>
+<span class="text-[8px] border border-black px-2 py-1 uppercase tracking-widest font-medium">Docker</span>
+</div>
+</div>
+</div>
+<!-- Project 6 -->
+<div class="relative group overflow-hidden break-inside-avoid bg-surface-container-low">
+<img alt="Medical Classifier" class="w-full grayscale hover:grayscale-0 transition-all duration-500" data-alt="digital microscope view of cells with overlaid artificial intelligence analysis markers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_E8NEybHj-6IlQDGn8a-C9MqTA530nxZ8daieRnBpPPRgu6w1Hr_9EZcAEjVqb_vxpWTQrM4G8--LQKgvMlW33yhL70UEv7MUvnGbnUy8gJnmKGcjincMX82lCiaWKzIWtKLo2jWuo71bwQnHO_LbMtZNAEIJcb5iiZpfcQXm7dsTFvbhllYPfNcW7wlKyYzWrJxYU9_67V8GZczh0-OytxA8O2xnRA0xpDU-DYJf97uoooWNKpEB-8v5pKPrUeP5Nb1ozRG0NFEj"/>
+<div class="p-6 bg-white">
+<h3 class="font-bold uppercase tracking-widest text-sm mb-2">Medical Image Classifier</h3>
+<div class="flex flex-wrap gap-2">
+<span class="text-[8px] border border-black px-2 py-1 uppercase tracking-widest font-medium">DenseNet</span>
+<span class="text-[8px] border border-black px-2 py-1 uppercase tracking-widest font-medium">TensorFlow</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Education & Experience Section -->
+<section class="py-32 px-8 md:px-16 lg:px-24 bg-[#F2F2F2]" id="experience">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24">
+<!-- Education -->
+<div>
+<h2 class="text-3xl font-extrabold uppercase tracking-widest mb-16 border-b-4 border-black inline-block pb-2">EDUCATION</h2>
+<div class="space-y-12">
+<div class="relative pl-8 border-l border-black/10">
+<div class="absolute -left-[5px] top-0 w-[10px] h-[10px] bg-black"></div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">2018 - 2022</span>
+<h3 class="text-xl font-bold uppercase tracking-wider mb-1">COMSATS UNIVERSITY</h3>
+<p class="font-medium text-xs uppercase tracking-[0.1em] text-on-surface-variant mb-4">BS in Computer Science</p>
+<p class="text-sm font-light text-on-surface-variant leading-relaxed">Specialized in Algorithms and Machine Learning. Graduated with high honors.</p>
+</div>
+<div class="relative pl-8 border-l border-black/10">
+<div class="absolute -left-[5px] top-0 w-[10px] h-[10px] bg-black"></div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">2023</span>
+<h3 class="text-xl font-bold uppercase tracking-wider mb-1">DEEPLEARNING.AI</h3>
+<p class="font-medium text-xs uppercase tracking-[0.1em] text-on-surface-variant mb-4">Deep Learning Specialization</p>
+<p class="text-sm font-light text-on-surface-variant leading-relaxed">Comprehensive curriculum by Andrew Ng covering CNNs, RNNs, and Model Tuning.</p>
+</div>
+<div class="relative pl-8 border-l border-black/10">
+<div class="absolute -left-[5px] top-0 w-[10px] h-[10px] bg-black"></div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">2023</span>
+<h3 class="text-xl font-bold uppercase tracking-wider mb-1">MLOPS.COMMUNITY</h3>
+<p class="font-medium text-xs uppercase tracking-[0.1em] text-on-surface-variant mb-4">MLOps Production Certification</p>
+<p class="text-sm font-light text-on-surface-variant leading-relaxed">Focus on scalable deployment, containerization, and lifecycle management.</p>
+</div>
+</div>
+</div>
+<!-- Experience -->
+<div>
+<h2 class="text-3xl font-extrabold uppercase tracking-widest mb-16 border-b-4 border-black inline-block pb-2">EXPERIENCE</h2>
+<div class="space-y-12">
+<div class="relative pl-8 border-l border-black/10">
+<div class="absolute -left-[5px] top-0 w-[10px] h-[10px] bg-black"></div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">2022 - PRESENT</span>
+<h3 class="text-xl font-bold uppercase tracking-wider mb-1">TECH STARTUP</h3>
+<p class="font-medium text-xs uppercase tracking-[0.1em] text-on-surface-variant mb-4">Senior ML Engineer</p>
+<p class="text-sm font-light text-on-surface-variant leading-relaxed">Leading a team of 4 engineers to deploy real-time fraud detection systems using graph neural networks.</p>
+</div>
+<div class="relative pl-8 border-l border-black/10">
+<div class="absolute -left-[5px] top-0 w-[10px] h-[10px] bg-black"></div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">2021 - 2022</span>
+<h3 class="text-xl font-bold uppercase tracking-wider mb-1">AI SOLUTIONS CO</h3>
+<p class="font-medium text-xs uppercase tracking-[0.1em] text-on-surface-variant mb-4">Junior Data Scientist</p>
+<p class="text-sm font-light text-on-surface-variant leading-relaxed">Built and optimized computer vision models for automated quality control in manufacturing plants.</p>
+</div>
+<div class="relative pl-8 border-l border-black/10">
+<div class="absolute -left-[5px] top-0 w-[10px] h-[10px] bg-black"></div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">2019 - 2021</span>
+<h3 class="text-xl font-bold uppercase tracking-wider mb-1">FREELANCE</h3>
+<p class="font-medium text-xs uppercase tracking-[0.1em] text-on-surface-variant mb-4">ML Consultant</p>
+<p class="text-sm font-light text-on-surface-variant leading-relaxed">Delivered over 20 end-to-end data products for international clients across diverse industries.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Certifications Section -->
+<section class="py-32 px-8 md:px-16 lg:px-24 bg-white" id="certifications">
+<h2 class="text-4xl md:text-5xl tracking-[0.08em] uppercase mb-16">
+<span class="font-extrabold">CERTI</span><span class="font-light">FICATIONS</span>
+</h2>
+<div class="max-w-4xl space-y-12">
+<div class="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-4 md:gap-12 items-start group">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pt-1.5">2024</span>
+<div class="border-t border-black/10 pt-6 md:pt-0 md:border-t-0 group-first:border-t-0">
+<h3 class="text-xl font-bold uppercase tracking-wider mb-1">AWS Certified Machine Learning – Specialty</h3>
+<p class="font-medium text-xs uppercase tracking-[0.1em] text-on-surface-variant mb-4">Amazon Web Services</p>
+<p class="text-sm font-light text-on-surface-variant leading-relaxed">Validates expertise in building, training, tuning, and deploying machine learning models on AWS.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-4 md:gap-12 items-start group border-t border-black/10 pt-12">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pt-1.5">2023</span>
+<div>
+<h3 class="text-xl font-bold uppercase tracking-wider mb-1">TensorFlow Developer Professional Certificate</h3>
+<p class="font-medium text-xs uppercase tracking-[0.1em] text-on-surface-variant mb-4">Google / Coursera</p>
+<p class="text-sm font-light text-on-surface-variant leading-relaxed">Practical application of machine learning using TensorFlow: computer vision, convolutional neural networks, and NLP.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-4 md:gap-12 items-start group border-t border-black/10 pt-12">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pt-1.5">2023</span>
+<div>
+<h3 class="text-xl font-bold uppercase tracking-wider mb-1">Generative AI with Large Language Models</h3>
+<p class="font-medium text-xs uppercase tracking-[0.1em] text-on-surface-variant mb-4">DeepLearning.AI</p>
+<p class="text-sm font-light text-on-surface-variant leading-relaxed">Specialized training on the full lifecycle of LLM-based applications, including training, fine-tuning, and deployment.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Tech Stack -->
+<section class="py-32 px-8 md:px-16 lg:px-24 bg-white" id="skills-stack">
+<h2 class="text-4xl md:text-5xl tracking-[0.08em] uppercase mb-20 text-center">
+<span class="font-extrabold">TE</span><span class="font-light">CH STACK</span>
+</h2>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+<div class="bg-surface-container-low p-8 flex flex-col items-center justify-center gap-4 group hover:bg-black transition-all">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant group-hover:text-white">LANGUAGES</span>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-2xl group-hover:text-white" data-icon="terminal">terminal</span>
+</div>
+<p class="text-[10px] font-bold group-hover:text-white">PYTHON, C++, SQL</p>
+</div>
+<div class="bg-surface-container-low p-8 flex flex-col items-center justify-center gap-4 group hover:bg-black transition-all">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant group-hover:text-white">FRAMEWORKS</span>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-2xl group-hover:text-white" data-icon="hub">hub</span>
+</div>
+<p class="text-[10px] font-bold group-hover:text-white">PYTORCH, TF, JAX</p>
+</div>
+<div class="bg-surface-container-low p-8 flex flex-col items-center justify-center gap-4 group hover:bg-black transition-all">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant group-hover:text-white">MLOPS</span>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-2xl group-hover:text-white" data-icon="deployed_code">deployed_code</span>
+</div>
+<p class="text-[10px] font-bold group-hover:text-white">DOCKER, K8S, AWS</p>
+</div>
+<div class="bg-surface-container-low p-8 flex flex-col items-center justify-center gap-4 group hover:bg-black transition-all">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant group-hover:text-white">DATA</span>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-2xl group-hover:text-white" data-icon="schema">schema</span>
+</div>
+<p class="text-[10px] font-bold group-hover:text-white">SPARK, SNOWFLAKE</p>
+</div>
+<div class="bg-surface-container-low p-8 flex flex-col items-center justify-center gap-4 group hover:bg-black transition-all">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant group-hover:text-white">VIZ</span>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-2xl group-hover:text-white" data-icon="dashboard">dashboard</span>
+</div>
+<p class="text-[10px] font-bold group-hover:text-white">TABLEAU, PLOTLY</p>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-32 px-8 md:px-16 lg:px-24 bg-[#1A1A1A] text-white" id="contact">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24">
+<div>
+<h2 class="text-4xl md:text-5xl tracking-[0.08em] uppercase mb-12">
+<span class="font-extrabold">GE</span><span class="font-light">T IN TOUCH</span>
+</h2>
+<p class="text-on-primary-fixed-variant font-light text-lg mb-12 leading-relaxed max-w-md">
+                    Ready to build the future of intelligence? Let's connect and discuss your next breakthrough.
+                </p>
+<div class="space-y-8">
+<a class="flex items-center gap-6 group" href="#">
+<span class="material-symbols-outlined text-2xl opacity-60 group-hover:opacity-100" data-icon="alternate_email">alternate_email</span>
+<span class="text-sm font-bold uppercase tracking-[0.2em]">hello@mlengineer.pk</span>
+</a>
+<a class="flex items-center gap-6 group" href="#">
+<span class="material-symbols-outlined text-2xl opacity-60 group-hover:opacity-100" data-icon="code">code</span>
+<span class="text-sm font-bold uppercase tracking-[0.2em]">github.com/ml-engineer</span>
+</a>
+<a class="flex items-center gap-6 group" href="#">
+<span class="material-symbols-outlined text-2xl opacity-60 group-hover:opacity-100" data-icon="public">public</span>
+<span class="text-sm font-bold uppercase tracking-[0.2em]">linkedin.com/in/mlengineer</span>
+</a>
+<a class="flex items-center gap-6 group" href="#">
+<span class="material-symbols-outlined text-2xl opacity-60 group-hover:opacity-100" data-icon="monitoring">monitoring</span>
+<span class="text-sm font-bold uppercase tracking-[0.2em]">kaggle.com/ml-master</span>
+</a>
+</div>
+</div>
+<div>
+<form class="space-y-12">
+<div class="relative group">
+<input class="w-full bg-transparent border-0 border-b border-white/20 py-4 focus:ring-0 focus:border-white transition-all text-xs font-bold tracking-[0.2em] placeholder:text-white/20" placeholder="YOUR NAME" type="text"/>
+</div>
+<div class="relative group">
+<input class="w-full bg-transparent border-0 border-b border-white/20 py-4 focus:ring-0 focus:border-white transition-all text-xs font-bold tracking-[0.2em] placeholder:text-white/20" placeholder="YOUR EMAIL" type="email"/>
+</div>
+<div class="relative group">
+<textarea class="w-full bg-transparent border-0 border-b border-white/20 py-4 focus:ring-0 focus:border-white transition-all text-xs font-bold tracking-[0.2em] placeholder:text-white/20 resize-none" placeholder="YOUR MESSAGE" rows="4"></textarea>
+</div>
+<button class="bg-white text-black px-12 py-4 font-extrabold uppercase text-xs tracking-[0.3em] hover:bg-black hover:text-white border-2 border-white transition-all duration-300 w-full md:w-auto">
+                        SEND MESSAGE
+                    </button>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="flex justify-between items-center py-6 px-8 w-full bg-black dark:bg-zinc-950 text-white dark:text-gray-100">
+<div class="text-[10px] font-medium uppercase tracking-[0.1em]">
+            © 2024 ML ENGINEER. ALL RIGHTS RESERVED.
+        </div>
+<div class="hidden md:flex gap-6">
+<a class="text-white opacity-60 text-[10px] font-medium uppercase tracking-[0.1em] hover:opacity-100 transition-opacity duration-150" href="#home">HOME</a>
+<a class="text-white opacity-60 text-[10px] font-medium uppercase tracking-[0.1em] hover:opacity-100 transition-opacity duration-150" href="#about">ABOUT</a>
+<a class="text-white opacity-60 text-[10px] font-medium uppercase tracking-[0.1em] hover:opacity-100 transition-opacity duration-150" href="#projects">PROJECTS</a>
+<a class="text-white opacity-60 text-[10px] font-medium uppercase tracking-[0.1em] hover:opacity-100 transition-opacity duration-150" href="#contact">CONTACT</a>
+</div>
+</footer>
+</body></html>
