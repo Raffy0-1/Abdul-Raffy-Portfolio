@@ -245,6 +245,7 @@ class InteractionManager {
         this.initContactForm();
         this.initTechTooltips();
         this.initProjectFilters();
+        this.initCertLightbox();
         
         document.addEventListener('site-loaded', () => {
             this.scrambleHeroHeadline();
@@ -358,14 +359,45 @@ class InteractionManager {
         // Submit animation
         const form = document.getElementById('contact-form');
         const btn = document.getElementById('submit-btn');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault(); // Demo logic
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
             btn.innerText = "SENDING...";
             btn.style.pointerEvents = "none";
             
-            setTimeout(() => {
-                btn.innerHTML = `SENT <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;vertical-align:middle;margin-left:5px;"><path d="M20 6L9 17l-5-5" stroke-dasharray="24" stroke-dashoffset="24"><animate attributeName="stroke-dashoffset" from="24" to="0" dur="0.4s" fill="freeze"/></path></svg>`;
-            }, 1200);
+            const formData = new FormData(form);
+            // Replace this with your actual Web3Forms access key
+            formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
+            
+            try {
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    btn.innerHTML = `SENT <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;vertical-align:middle;margin-left:5px;"><path d="M20 6L9 17l-5-5" stroke-dasharray="24" stroke-dashoffset="24"><animate attributeName="stroke-dashoffset" from="24" to="0" dur="0.4s" fill="freeze"/></path></svg>`;
+                    setTimeout(() => { 
+                        btn.innerText = "SEND MESSAGE"; 
+                        btn.style.pointerEvents = "auto"; 
+                        form.reset();
+                    }, 3000);
+                } else {
+                    btn.innerText = "ERROR! TRY AGAIN";
+                    setTimeout(() => {
+                        btn.innerText = "SEND MESSAGE";
+                        btn.style.pointerEvents = "auto";
+                    }, 3000);
+                }
+            } catch (error) {
+                btn.innerText = "ERROR! TRY AGAIN";
+                setTimeout(() => {
+                    btn.innerText = "SEND MESSAGE";
+                    btn.style.pointerEvents = "auto";
+                }, 3000);
+            }
         });
     }
 
@@ -410,6 +442,43 @@ class InteractionManager {
                     }
                 });
             });
+        });
+    }
+
+    initCertLightbox() {
+        const lightbox    = document.getElementById('cert-lightbox');
+        const overlay     = lightbox.querySelector('.cert-lightbox-overlay');
+        const img         = document.getElementById('cert-lightbox-img');
+        const closeBtn    = document.getElementById('cert-lightbox-close');
+        const certCards   = document.querySelectorAll('.cert-card');
+
+        const openLightbox = (src) => {
+            img.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            // Clear src after transition to avoid flicker
+            setTimeout(() => { img.src = ''; }, 400);
+        };
+
+        certCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const certSrc = card.getAttribute('data-cert');
+                if (certSrc) openLightbox(certSrc);
+            });
+        });
+
+        overlay.addEventListener('click', closeLightbox);
+        closeBtn.addEventListener('click', closeLightbox);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
         });
     }
 }
