@@ -1255,15 +1255,38 @@ body.hover-invert .cursor-ring {
     /* Hero */
     .hero {
         grid-template-columns: 1fr;
-        min-height: 100svh;
+        grid-template-rows: auto auto;
+        min-height: unset;
+        height: auto;
         padding-top: var(--nav-height);
+        align-items: start;
+        background-size: 100% 10px;
     }
     .hero-left {
-        padding: 60px 16px;
+        padding: 50px 16px 20px;
         justify-content: center;
         text-align: center;
     }
-    .hero-right { display: none; }
+    .hero-right {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: clamp(320px, 80vw, 420px);
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+    }
+    .hero-img {
+        width: auto;
+        max-width: 90%;
+        height: 100%;
+        object-fit: contain;
+        object-position: bottom center;
+        filter: grayscale(1) contrast(1.1);
+        transform: none;
+        display: block;
+        vertical-align: bottom;
+    }
     .hero-headline {
         font-size: clamp(28px, 9vw, 42px);
         min-height: unset;
@@ -1372,12 +1395,24 @@ body.hover-invert .cursor-ring {
         grid-template-columns: repeat(4, 1fr);
         gap: 12px;
         width: min-content;
-        margin: 20px auto 0;
+        margin: 20px 0 0;
     }
     .social-icon {
         width: 45px;
         height: 45px;
         font-size: 20px;
+    }
+
+    /* Contact Section — stack to single column */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .btn-submit {
+        padding: 16px;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
     }
 
     /* Footer Stacking */
