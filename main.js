@@ -411,26 +411,29 @@ class InteractionManager {
         const tooltip = document.getElementById('tech-tooltip');
         const tooltext = document.getElementById('tooltip-text');
 
-        techSection.addEventListener('mousemove', (e) => {
-            const cell = e.target.closest('.tech-cell');
-            
-            if (cell) {
-                const text = cell.getAttribute('data-tooltip') || 'View Tool';
-                if (tooltext.innerText !== text) {
-                    tooltext.innerText = text;
-                }
+        // Only enable floating tooltips on devices with hover capabilities (mice)
+        if (window.matchMedia('(hover: hover)').matches) {
+            techSection.addEventListener('mousemove', (e) => {
+                const cell = e.target.closest('.tech-cell');
                 
-                tooltip.classList.add('visible');
-                tooltip.style.left = `${e.clientX}px`;
-                tooltip.style.top = `${e.clientY}px`;
-            } else {
-                tooltip.classList.remove('visible');
-            }
-        });
+                if (cell) {
+                    const text = cell.getAttribute('data-tooltip') || 'View Tool';
+                    if (tooltext.innerText !== text) {
+                        tooltext.innerText = text;
+                    }
+                    
+                    tooltip.classList.add('visible');
+                    tooltip.style.left = `${e.clientX}px`;
+                    tooltip.style.top = `${e.clientY}px`;
+                } else {
+                    tooltip.classList.remove('visible');
+                }
+            });
 
-        techSection.addEventListener('mouseleave', () => {
-            tooltip.classList.remove('visible');
-        });
+            techSection.addEventListener('mouseleave', () => {
+                tooltip.classList.remove('visible');
+            });
+        }
     }
 
     initProjectFilters() {

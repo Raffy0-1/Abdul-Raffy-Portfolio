@@ -1402,20 +1402,29 @@ body.hover-invert .cursor-ring {
     .cert-card { padding: 22px 18px 22px; }
 
     /* Tech Stack - Force 2 columns precisely */
+    /* Tech Stack */
     .tech-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 10px;
         justify-items: center;
     }
     .tech-cell {
-        width: 100%;
-        max-width: 160px;
-        height: 90px;
+        width: 80px;
+        height: 80px;
     }
-    .tech-cell i { font-size: 26px; }
-    .tech-cell span { font-size: 10px; }
-    .tech-category { margin-bottom: 40px !important; }
+    .tech-cell i {
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
+    .tech-cell span {
+        font-size: 10px;
+    }
+    
+    /* Disable floating tooltip on mobile as names are already visible */
+    .tech-tooltip {
+        display: none !important;
+    }.tech-category { margin-bottom: 40px !important; }
 
     /* Social Icons Fix - Force 2 rows (4 columns) */
     .social-links {
