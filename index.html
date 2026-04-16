@@ -34,8 +34,14 @@
 
     <!-- Page Loader -->
     <div class="loader-overlay" id="loader">
-        <div class="loader-counter"><span id="loader-count">0</span>%</div>
-        <div class="loader-line"></div>
+        <div class="loader-core-wrapper">
+            <svg class="loader-svg" viewBox="0 0 100 100">
+                <circle class="loader-circle-bg" cx="50" cy="50" r="45"></circle>
+                <circle class="loader-circle-progress" cx="50" cy="50" r="45"></circle>
+            </svg>
+            <div class="loader-counter"><span id="loader-count">0</span>%</div>
+        </div>
+        <div class="data-packets" id="data-packets"></div>
         <div class="loader-half loader-top"></div>
         <div class="loader-half loader-bottom"></div>
     </div>
