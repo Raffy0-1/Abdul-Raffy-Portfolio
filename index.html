@@ -26,6 +26,7 @@
     <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -104,8 +105,8 @@
                     learn — from predictive models to intelligent chatbots — turning raw data into real-world solutions
                     that actually work.</p>
                 <div class="hero-actions">
-                    <a href="#projects" class="btn btn-liquid" data-liquid>VIEW MY WORK</a>
-                    <a href="#contact" class="btn btn-liquid btn-dark" data-liquid>LET'S TALK</a>
+                    <a href="#projects" class="btn btn-liquid" data-liquid><span>VIEW MY WORK</span></a>
+                    <a href="#contact" class="btn btn-liquid btn-dark" data-liquid><span>LET'S TALK</span></a>
                 </div>
             </div>
             <div class="hero-right" data-cursor="invert">
@@ -150,7 +151,7 @@
                             Intelligence — resulting in projects like Alpha-Centauri, Raymax, and Basal Ganglia. Outside
                             code, I'm into photography, graphic design, and gaming.</p>
                         <a href="assets/Abdul-Raffy-CV.pdf" download="Abdul-Raffy-CV.pdf" class="btn btn-liquid btn-dark"
-                            data-liquid style="margin-top:20px; display:inline-block;">DOWNLOAD MY CV</a>
+                            data-liquid style="margin-top:20px; display:inline-block;"><span>DOWNLOAD MY CV</span></a>
                     </div>
                     <div class="about-right" id="about-right">
                         <h2 class="section-title split-words">
@@ -290,6 +291,24 @@
                 </div>
 
                 <div class="projects-masonry" id="projects-masonry">
+
+                    <div class="project-card" data-category="nlp" style="grid-row: span 4;" data-cursor="project">
+                        <div class="layer-1">
+                            <div class="project-thumb"><img src="./assets/support_ticket_ai_thumbnail_1776343967411.png" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Support Ticket Tagging Thumbnail"></div>
+                            <div class="project-base-info">
+                                <h4>Support Ticket AI Tagging</h4>
+                                <span>LLM / BERT Fine-tuning</span>
+                            </div>
+                        </div>
+                        <div class="layer-2"></div>
+                        <div class="layer-3">
+                            <span class="case-label">NLP</span>
+                            <h4>Support Ticket Tagging</h4>
+                            <p>Automated classification of customer support tickets using Zero-shot, Few-shot, and Fine-tuned BERT models.</p>
+                            <a href="https://github.com/Raffy0-1/DHC-Phase-2-ML-Task_5.git" target="_blank"
+                                style="margin-top:15px; display:inline-block; font-size:12px; font-weight:700; text-decoration:underline;">GITHUB</a>
+                        </div>
+                    </div>
 
                     <div class="project-card" data-category="chatbot" style="grid-row: span 4;" data-cursor="project">
                         <div class="layer-1">
@@ -784,8 +803,8 @@
                                 <div class="input-line"></div>
                                 <div class="cursor-blink"></div>
                             </div>
-                            <button type="submit" class="btn btn-submit" id="submit-btn"
-                                style="width:100%; border:1px solid #333; margin-top:20px; color:#fff; background:transparent;">SEND MESSAGE</button>
+                            <button type="submit" class="btn btn-submit btn-liquid btn-dark" id="submit-btn" data-liquid
+                                style="width:100%; border:1px solid #333; margin-top:20px; color:#fff; background:transparent;"><span>SEND MESSAGE</span></button>
                         </form>
                     </div>
                 </div>

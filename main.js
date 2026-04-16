@@ -100,8 +100,9 @@ class CursorManager {
             this.mouse.x = e.clientX;
             this.mouse.y = e.clientY;
             
-            // Instantly move dot
-            this.dot.style.transform = `translate(${this.mouse.x}px, ${this.mouse.y}px) translate(-50%, -50%)`;
+            // Centered move dot
+            this.dot.style.left = `${this.mouse.x}px`;
+            this.dot.style.top = `${this.mouse.y}px`;
         });
 
         // Click effect
@@ -145,7 +146,9 @@ class CursorManager {
         this.ringPos.x += (this.mouse.x - this.ringPos.x) * 0.2;
         this.ringPos.y += (this.mouse.y - this.ringPos.y) * 0.2;
         
-        this.ring.style.transform = `translate(${this.ringPos.x}px, ${this.ringPos.y}px) translate(-50%, -50%)`;
+        // Centered ring move
+        this.ring.style.left = `${this.ringPos.x}px`;
+        this.ring.style.top = `${this.ringPos.y}px`;
         
         requestAnimationFrame(() => this.render());
     }
@@ -402,22 +405,31 @@ class InteractionManager {
     }
 
     initTechTooltips() {
+        const techSection = document.getElementById('tech');
+        if (!techSection) return;
+        
         const tooltip = document.getElementById('tech-tooltip');
         const tooltext = document.getElementById('tooltip-text');
-        const cells = document.querySelectorAll('.tech-cell');
 
-        cells.forEach(cell => {
-            cell.addEventListener('mouseenter', () => {
-                tooltext.innerText = cell.getAttribute('data-tooltip');
+        techSection.addEventListener('mousemove', (e) => {
+            const cell = e.target.closest('.tech-cell');
+            
+            if (cell) {
+                const text = cell.getAttribute('data-tooltip') || 'View Tool';
+                if (tooltext.innerText !== text) {
+                    tooltext.innerText = text;
+                }
+                
                 tooltip.classList.add('visible');
-            });
-            cell.addEventListener('mousemove', (e) => {
                 tooltip.style.left = `${e.clientX}px`;
                 tooltip.style.top = `${e.clientY}px`;
-            });
-            cell.addEventListener('mouseleave', () => {
+            } else {
                 tooltip.classList.remove('visible');
-            });
+            }
+        });
+
+        techSection.addEventListener('mouseleave', () => {
+            tooltip.classList.remove('visible');
         });
     }
 
@@ -434,13 +446,23 @@ class InteractionManager {
 
                 cards.forEach(card => {
                     card.classList.remove('blurred', 'pulsed');
+                    
                     if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.classList.add('pulsed');
-                        setTimeout(()=>card.classList.remove('pulsed'), 300);
+                        card.style.order = "-1";
+                        if (filter !== 'all') {
+                            card.classList.add('pulsed');
+                            setTimeout(()=>card.classList.remove('pulsed'), 300);
+                        }
                     } else {
+                        card.style.order = "0";
                         card.classList.add('blurred');
                     }
                 });
+
+                // Refresh ScrollTrigger as items have physically moved
+                setTimeout(() => {
+                    ScrollTrigger.refresh();
+                }, 400); // Wait for CSS transitions to finish
             });
         });
     }
@@ -503,7 +525,8 @@ class ScrollAnimations {
                     gsap.from(words, {
                         scrollTrigger: {
                             trigger: h2,
-                            start: "top 85%"
+                            start: "top 85%",
+                            toggleActions: "play reverse play reverse"
                         },
                         y: "100%",
                         duration: 0.7,
@@ -518,7 +541,7 @@ class ScrollAnimations {
             ScrollTrigger.create({
                 trigger: '#stats',
                 start: "top 90%",
-                once: true,
+                toggleActions: "play none none none",
                 onEnter: () => {
                     const numberEls = document.querySelectorAll('.stat-number');
                     numberEls.forEach(el => {
@@ -537,11 +560,11 @@ class ScrollAnimations {
 
             // 3. About Section slide in columns
             gsap.from('#about-left', {
-                scrollTrigger: { trigger: '.about', start: "top 75%" },
+                scrollTrigger: { trigger: '.about', start: "top 75%", toggleActions: "play reverse play reverse" },
                 x: -50, opacity: 0, duration: 1, ease: 'power3.out'
             });
             gsap.from('#about-right', {
-                scrollTrigger: { trigger: '.about', start: "top 75%" },
+                scrollTrigger: { trigger: '.about', start: "top 75%", toggleActions: "play reverse play reverse" },
                 x: 50, opacity: 0, duration: 1, ease: 'power3.out'
             });
 
@@ -555,7 +578,7 @@ class ScrollAnimations {
                 ScrollTrigger.create({
                     trigger: track,
                     start: "top 90%",
-                    once: true,
+                    toggleActions: "play none none none",
                     onEnter: () => {
                         setTimeout(() => {
                             gsap.to(fill, { width: targetW + '%', duration: 1.5, ease: 'power2.out' });
@@ -571,7 +594,7 @@ class ScrollAnimations {
             // 5. Services Cards Stagger & rotate
             gsap.fromTo('.service-card', 
                 { y: 50, rotation: 3, opacity: 0 },
-                { scrollTrigger: { trigger: '#services', start: "top 60%" },
+                { scrollTrigger: { trigger: '#services', start: "top 60%", toggleActions: "play reverse play reverse" },
                   y: 0, rotation: 0, opacity: 1, 
                   duration: 0.8, stagger: 0.06, ease: "back.out(1.2)"
                 }
@@ -580,7 +603,7 @@ class ScrollAnimations {
             // 6. Projects Cards Drop (elastic ease)
             gsap.fromTo('.project-card', 
                 { y: 100, opacity: 0 },
-                { scrollTrigger: { trigger: '#projects-masonry', start: "top 70%" },
+                { scrollTrigger: { trigger: '#projects-masonry', start: "top 70%", toggleActions: "play reverse play reverse" },
                   y: 0, opacity: 1,
                   duration: 1.2, stagger: 0.1, ease: "back.out(1.4)"
                 }
@@ -608,7 +631,8 @@ class ScrollAnimations {
                 const tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: item,
-                        start: "top 80%"
+                        start: "top 80%",
+                        toggleActions: "play reverse play reverse"
                     }
                 });
                 
@@ -621,7 +645,7 @@ class ScrollAnimations {
             // 8. Tech Stack Scatter
             gsap.fromTo('.tech-cell', 
                 { x: () => (Math.random() - 0.5) * 200, y: () => (Math.random() - 0.5) * 200, opacity: 0, scale: 0.5, rotation: () => (Math.random() - 0.5) * 45 },
-                { scrollTrigger: { trigger: '#tech', start: "top 70%" },
+                { scrollTrigger: { trigger: '#tech', start: "top 70%", toggleActions: "play reverse play reverse" },
                   x: 0, y: 0, opacity: 1, scale: 1, rotation: 0,
                   duration: 1, stagger: 0.02, ease: "back.out(1.2)"
                 }
@@ -629,8 +653,20 @@ class ScrollAnimations {
 
             // 9. Contact form reveal typewriter border effect (done via CSS layout mostly, triggering parent fade in cleanly)
             gsap.from('.contact-form .input-group, .btn-submit', {
-                scrollTrigger: { trigger: '.contact-form', start: "top 80%" },
+                scrollTrigger: { trigger: '.contact-form', start: "top 80%", toggleActions: "play reverse play reverse" },
                 y: 20, opacity: 0, stagger: 0.2, duration: 0.6, ease: "power2.out"
+            });
+
+            // 11. Certifications appearing animation
+            const certCards = document.querySelectorAll('.cert-card');
+            certCards.forEach((card, i) => {
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: "top 92%",
+                    toggleActions: "play reverse play reverse",
+                    onEnter: () => card.classList.add('cert-visible'),
+                    onLeaveBack: () => card.classList.remove('cert-visible')
+                });
             });
             
             // 10. Scroll to top reveal clip-path
