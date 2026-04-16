@@ -8,32 +8,84 @@ class SiteLoader {
     constructor() {
         this.loader = document.getElementById('loader');
         this.counterEl = document.getElementById('loader-count');
-        this.lineEl = document.querySelector('.loader-line');
+        this.progressCircle = document.querySelector('.loader-circle-progress');
+        this.packetContainer = document.getElementById('data-packets');
         this.topEl = document.querySelector('.loader-top');
         this.bottomEl = document.querySelector('.loader-bottom');
+        this.coreWrapper = document.querySelector('.loader-core-wrapper');
+        
         this.progress = 0;
+        this.circumference = 2 * Math.PI * 45; // r=45
+        
+        this.init();
+    }
+
+    init() {
         this.startLoader();
+        this.startPacketEmission();
     }
 
     startLoader() {
         const updateCounter = () => {
-            // random increment for non-linear feel
-            this.progress += Math.random() * 15;
+            // Non-linear progress for a "processing" feel
+            const increment = Math.random() * (this.progress < 80 ? 8 : 2);
+            this.progress += increment;
+            
             if (this.progress > 100) this.progress = 100;
             
-            this.counterEl.innerText = Math.floor(this.progress);
+            const p = Math.floor(this.progress);
+            this.counterEl.innerText = p;
+            
+            // Update SVG Ring
+            const offset = this.circumference - (this.progress / 100) * this.circumference;
+            this.progressCircle.style.strokeDashoffset = offset;
             
             if (this.progress < 100) {
-                setTimeout(updateCounter, 50 + Math.random() * 150);
+                setTimeout(updateCounter, 40 + Math.random() * 120);
             } else {
-                this.revealSite();
+                setTimeout(() => this.revealSite(), 500);
             }
         };
-        setTimeout(updateCounter, 100);
+        setTimeout(updateCounter, 200);
+    }
+
+    startPacketEmission() {
+        this.packetInterval = setInterval(() => {
+            if (this.progress >= 100) {
+                clearInterval(this.packetInterval);
+                return;
+            }
+            this.createPacket();
+        }, 150);
+    }
+
+    createPacket() {
+        const packet = document.createElement('div');
+        packet.className = 'packet';
+        this.packetContainer.appendChild(packet);
+
+        // Random starting position (edges)
+        const side = Math.floor(Math.random() * 4);
+        let x, y;
+        if (side === 0) { x = Math.random() * 100; y = -5; } // top
+        else if (side === 1) { x = 105; y = Math.random() * 100; } // right
+        else if (side === 2) { x = Math.random() * 100; y = 105; } // bottom
+        else { x = -5; y = Math.random() * 100; } // left
+
+        packet.style.left = `${x}%`;
+        packet.style.top = `${y}%`;
+
+        gsap.to(packet, {
+            left: '50%',
+            top: '50%',
+            opacity: 1,
+            duration: 1 + Math.random(),
+            ease: "power2.in",
+            onComplete: () => packet.remove()
+        });
     }
 
     revealSite() {
-        // Animation timeline for loader exit
         const tl = gsap.timeline({
             onComplete: () => {
                 this.loader.remove();
@@ -41,11 +93,16 @@ class SiteLoader {
             }
         });
 
-        tl.to(this.counterEl, { opacity: 0, duration: 0.3 })
-          .to(this.lineEl, { width: '100%', duration: 0.8, ease: "power3.inOut" })
-          .to(this.lineEl, { opacity: 0, duration: 0.2 })
-          .to(this.topEl, { y: '-100%', duration: 0.8, ease: "power3.inOut" }, "-=0.2")
-          .to(this.bottomEl, { y: '100%', duration: 0.8, ease: "power3.inOut" }, "<");
+        // Graceful reveal sequence
+        tl.to(this.counterEl, { opacity: 0, scale: 0.9, duration: 0.5, ease: "power2.inOut" })
+          .to(this.coreWrapper, { 
+              scale: 15, 
+              opacity: 0, 
+              duration: 1.5, 
+              ease: "power3.inOut" 
+          }, "-=0.2")
+          .to(this.topEl, { y: '-100%', duration: 1.2, ease: "power4.inOut" }, "-=1.2")
+          .to(this.bottomEl, { y: '100%', duration: 1.2, ease: "power4.inOut" }, "<");
     }
 }
 
