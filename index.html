@@ -32,24 +32,31 @@
 
 <body>
 
-    <!-- Page Loader -->
+    <!-- 3D Voxel Intro Loader -->
     <div class="loader-overlay" id="loader">
-        <div class="loader-core-wrapper">
-            <svg class="loader-svg" viewBox="0 0 100 100">
-                <circle class="loader-circle-bg" cx="50" cy="50" r="45"></circle>
-                <circle class="loader-circle-progress" cx="50" cy="50" r="45"></circle>
-            </svg>
-            <div class="loader-counter"><span id="loader-count">0</span>%</div>
+        <div class="loader-container">
+            <div class="loader">
+                <div class="box box0"><div></div></div>
+                <div class="box box1"><div></div></div>
+                <div class="box box2"><div></div></div>
+                <div class="box box3"><div></div></div>
+                <div class="box box4"><div></div></div>
+                <div class="box box5"><div></div></div>
+                <div class="box box6"><div></div></div>
+                <div class="box box7"><div></div></div>
+                <div class="ground"><div></div></div>
+            </div>
+            <div class="loader-status-tag">
+                <span class="loader-dot"></span>
+                <span class="loader-text">Raffy.Dev</span>
+            </div>
         </div>
-        <div class="data-packets" id="data-packets"></div>
-        <div class="loader-half loader-top"></div>
-        <div class="loader-half loader-bottom"></div>
     </div>
 
     <!-- Custom Cursor -->
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="cursor-ring" id="cursor-ring">
-        <span class="cursor-text">VIEW</span>
+    <div class="custom-cursor" id="custom-cursor">
+        <img src="assets/custom-cursor.png" alt="" class="custom-cursor-img">
+        <span class="custom-cursor-badge" id="custom-cursor-badge">VIEW</span>
     </div>
 
     <!-- Scroll Progress Bar -->
@@ -127,7 +134,7 @@
                 <div class="stat-label">GitHub Repositories</div>
             </div>
             <div class="stat-col">
-                <div class="stat-number" data-target="6">0</div>
+                <div class="stat-number" data-target="8">0</div>
                 <div class="stat-label">ML Projects Deployed</div>
             </div>
             <div class="stat-col">
@@ -269,10 +276,9 @@
                         <svg class="service-border">
                             <rect width="100%" height="100%"></rect>
                         </svg>
-                        <i class="ph ph-pen-nib icon-orbit"></i>
-                        <h3><strong>UI/UX &</strong> GRAPHIC DESIGN</h3>
-                        <p>Interface design, wireframing, and visual content using Figma, Adobe XD, Photoshop, and
-                            Illustrator.</p>
+                        <i class="ph ph-robot icon-orbit"></i>
+                        <h3><strong>AI</strong> AUTOMATION</h3>
+                        <p>End-to-end intelligent automation pipelines, autonomous agent workflows, CRM integrations, and automated lead triage systems.</p>
                     </div>
                 </div>
             </div>
@@ -290,6 +296,7 @@
                         <button class="filter-btn active" data-filter="all">All</button>
                         <button class="filter-btn" data-filter="nlp">NLP</button>
                         <button class="filter-btn" data-filter="prediction">Prediction</button>
+                        <button class="filter-btn" data-filter="automation">Automation</button>
                         <button class="filter-btn" data-filter="chatbot">Chatbot</button>
                         <button class="filter-btn" data-filter="research">Research</button>
                         <button class="filter-btn" data-filter="web">Web</button>
@@ -298,7 +305,7 @@
 
                 <div class="projects-masonry" id="projects-masonry">
 
-                    <div class="project-card" data-category="nlp" style="grid-row: span 4;" data-cursor="project">
+                    <div class="project-card" data-category="nlp" data-cursor="project">
                         <div class="layer-1">
                             <div class="project-thumb"><img src="./assets/support_ticket_ai_thumbnail_1776343967411.png" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Support Ticket Tagging Thumbnail"></div>
                             <div class="project-base-info">
@@ -316,7 +323,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card" data-category="chatbot" style="grid-row: span 4;" data-cursor="project">
+                    <div class="project-card" data-category="chatbot" data-cursor="project">
                         <div class="layer-1">
                             <div class="project-thumb"><img src="./assets/mental_health_thumbnail_1776086566537.png" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Mental Health Chatbot Thumbnail"></div>
                             <div class="project-base-info">
@@ -335,7 +342,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card" data-category="chatbot" style="grid-row: span 3;" data-cursor="project">
+                    <div class="project-card" data-category="chatbot" data-cursor="project">
                         <div class="layer-1">
                             <div class="project-thumb"><img src="./assets/rag_chatbot_thumbnail_1776086581459.png" style="width:100%; height:100%; object-fit:cover; display:block;" alt="RAG Chatbot Thumbnail"></div>
                             <div class="project-base-info">
@@ -354,7 +361,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card" data-category="research" style="grid-row: span 3;" data-cursor="project">
+                    <div class="project-card" data-category="research" data-cursor="project">
                         <div class="layer-1">
                             <div class="project-thumb"><img src="./assets/alpha_centauri_thumbnail_1776086610406.png" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Alpha-Centauri Thumbnail"></div>
                             <div class="project-base-info">
@@ -374,7 +381,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card" data-category="chatbot" style="grid-row: span 4;" data-cursor="project">
+                    <div class="project-card" data-category="chatbot" data-cursor="project">
                         <div class="layer-1">
                             <div class="project-thumb"><img src="./assets/raymax_thumbnail_1776086235791.png" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Raymax Emotional Supporter Thumbnail"></div>
                             <div class="project-base-info">
@@ -392,8 +399,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card" data-category="prediction" style="grid-row: span 3;"
-                        data-cursor="project">
+                    <div class="project-card" data-category="prediction" data-cursor="project">
                         <div class="layer-1">
                             <div class="project-thumb"><img src="./assets/multimodal_housing_thumbnail_1776087158875.png" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Multimodal Housing Price Prediction Thumbnail"></div>
                             <div class="project-base-info">
@@ -411,7 +417,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card" data-category="prediction" style="grid-row: span 4;" data-cursor="project">
+                    <div class="project-card" data-category="prediction" data-cursor="project">
                         <div class="layer-1">
                             <div class="project-thumb"><img src="./assets/customer_churn_thumbnail_1776086321787.png" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Telco Customer Churn Thumbnail"></div>
                             <div class="project-base-info">
@@ -429,7 +435,7 @@
                         </div>
                     </div>
                     
-                    <div class="project-card" data-category="research" style="grid-row: span 3;" data-cursor="project">
+                    <div class="project-card" data-category="research" data-cursor="project">
                         <div class="layer-1">
                             <div class="project-thumb"><img src="./assets/quantifying_nostalgia_thumbnail_1776087131824.png" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Quantifying Nostalgia Thumbnail"></div>
                             <div class="project-base-info">
@@ -444,6 +450,40 @@
                             <p>A data-driven exploration analyzing the patterns and metrics of nostalgic sentiment.</p>
                             <a href="https://github.com/Raffy0-1/Quantifying-Nostalgia.git" target="_blank"
                                 style="margin-top:15px; display:inline-block; font-size:12px; font-weight:700; text-decoration:underline;">GITHUB</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="prediction" data-cursor="project">
+                        <div class="layer-1">
+                            <div class="project-thumb"><img src="./assets/lead_conversion_thumbnail.jpg" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Lead Conversion Pipeline Thumbnail"></div>
+                            <div class="project-base-info">
+                                <h4>Lead Conversion Pipeline</h4>
+                                <span>ML Pipeline / Scikit-Learn</span>
+                            </div>
+                        </div>
+                        <div class="layer-2"></div>
+                        <div class="layer-3">
+                            <span class="case-label">PREDICTION</span>
+                            <h4>Lead Conversion Pipeline</h4>
+                            <p>End-to-end predictive machine learning pipeline with automated feature engineering, outlier detection, and conversion probability scoring.</p>
+                            <a href="https://github.com/Raffy0-1/lead-conversion-pipeline.git" target="_blank">GITHUB</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="automation" data-cursor="project">
+                        <div class="layer-1">
+                            <div class="project-thumb"><img src="./assets/automated_lead_thumbnail.jpg" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Automated Lead Management System Thumbnail"></div>
+                            <div class="project-base-info">
+                                <h4>Automated Lead Management</h4>
+                                <span>AI Automation / Lead Scoring</span>
+                            </div>
+                        </div>
+                        <div class="layer-2"></div>
+                        <div class="layer-3">
+                            <span class="case-label">AUTOMATION</span>
+                            <h4>Automated Lead Management</h4>
+                            <p>Intelligent lead scoring and automated triage system that classifies incoming prospects, calculates priority scores, and routes high-intent opportunities.</p>
+                            <a href="https://github.com/Raffy0-1/Automated-Lead-Management-System.git" target="_blank">GITHUB</a>
                         </div>
                     </div>
                 </div>
@@ -666,27 +706,35 @@
                     <div class="tech-grid">
                         <a href="https://docs.python.org/3/" target="_blank" class="tech-cell" data-tooltip="Python">
                             <i class="ph ph-file-py"></i><span>Python</span>
+                            <span class="tech-hover-tooltip">Python</span>
                         </a>
                         <a href="https://www.tensorflow.org/api_docs" target="_blank" class="tech-cell" data-tooltip="TensorFlow">
                             <i class="ph ph-brain"></i><span>TensorFlow</span>
+                            <span class="tech-hover-tooltip">TensorFlow</span>
                         </a>
                         <a href="https://pytorch.org/docs/" target="_blank" class="tech-cell" data-tooltip="PyTorch">
                             <i class="ph ph-fire"></i><span>PyTorch</span>
+                            <span class="tech-hover-tooltip">PyTorch</span>
                         </a>
                         <a href="https://scikit-learn.org/stable/" target="_blank" class="tech-cell" data-tooltip="Scikit-learn">
                             <i class="ph ph-intersect"></i><span>Scikit-l</span>
+                            <span class="tech-hover-tooltip">Scikit-learn</span>
                         </a>
                         <a href="https://huggingface.co/docs" target="_blank" class="tech-cell" data-tooltip="HuggingFace">
                             <i class="ph ph-smiley"></i><span>HuggingF</span>
+                            <span class="tech-hover-tooltip">Hugging Face</span>
                         </a>
                         <a href="https://python.langchain.com/docs/get_started/introduction" target="_blank" class="tech-cell" data-tooltip="LangChain">
                             <i class="ph ph-link"></i><span>LangChain</span>
+                            <span class="tech-hover-tooltip">LangChain</span>
                         </a>
                         <a href="https://pandas.pydata.org/docs/" target="_blank" class="tech-cell" data-tooltip="Pandas & NumPy">
                             <i class="ph ph-table"></i><span>Data Sci</span>
+                            <span class="tech-hover-tooltip">Pandas & NumPy</span>
                         </a>
                         <a href="https://matplotlib.org/stable/" target="_blank" class="tech-cell" data-tooltip="Matplotlib">
                             <i class="ph ph-chart-line-up"></i><span>Matplotlib</span>
+                            <span class="tech-hover-tooltip">Matplotlib</span>
                         </a>
                     </div>
                 </div>
@@ -696,27 +744,35 @@
                     <div class="tech-grid">
                         <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="tech-cell" data-tooltip="JavaScript">
                             <i class="ph ph-file-js"></i><span>JS</span>
+                            <span class="tech-hover-tooltip">JavaScript</span>
                         </a>
                         <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" class="tech-cell" data-tooltip="HTML5">
                             <i class="ph ph-file-html"></i><span>HTML</span>
+                            <span class="tech-hover-tooltip">HTML5</span>
                         </a>
                         <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="tech-cell" data-tooltip="CSS3">
                             <i class="ph ph-file-css"></i><span>CSS</span>
+                            <span class="tech-hover-tooltip">CSS3</span>
                         </a>
                         <a href="https://getbootstrap.com/docs/" target="_blank" class="tech-cell" data-tooltip="Bootstrap">
                             <i class="ph ph-layout"></i><span>Bootstrap</span>
+                            <span class="tech-hover-tooltip">Bootstrap</span>
                         </a>
                         <a href="https://laravel.com/docs" target="_blank" class="tech-cell" data-tooltip="PHP & Laravel">
                             <i class="ph ph-code"></i><span>PHP</span>
+                            <span class="tech-hover-tooltip">PHP & Laravel</span>
                         </a>
                         <a href="https://dev.mysql.com/doc/" target="_blank" class="tech-cell" data-tooltip="MySQL">
                             <i class="ph ph-database"></i><span>MySQL</span>
+                            <span class="tech-hover-tooltip">MySQL</span>
                         </a>
                         <a href="https://www.mongodb.com/docs/" target="_blank" class="tech-cell" data-tooltip="MongoDB">
                             <i class="ph ph-leaf"></i><span>MongoDB</span>
+                            <span class="tech-hover-tooltip">MongoDB</span>
                         </a>
                         <a href="https://firebase.google.com/docs" target="_blank" class="tech-cell" data-tooltip="Firebase / Supabase">
                             <i class="ph ph-cloud"></i><span>Firebase</span>
+                            <span class="tech-hover-tooltip">Firebase / Supabase</span>
                         </a>
                     </div>
                 </div>
@@ -726,29 +782,30 @@
                     <div class="tech-grid">
                         <a href="https://www.adobe.com/products/indesign.html" target="_blank" class="tech-cell" data-tooltip="Adobe InDesign">
                             <i class="ph ph-book-open"></i><span>InDesign</span>
+                            <span class="tech-hover-tooltip">Adobe InDesign</span>
                         </a>
                         <a href="https://www.adobe.com/products/photoshop.html" target="_blank" class="tech-cell" data-tooltip="Adobe Photoshop">
                             <i class="ph ph-image"></i><span>Adobe PS</span>
+                            <span class="tech-hover-tooltip">Adobe Photoshop</span>
                         </a>
                         <a href="https://www.adobe.com/products/illustrator.html" target="_blank" class="tech-cell" data-tooltip="Adobe Illustrator">
                             <i class="ph ph-pen-nib"></i><span>Illustrator</span>
+                            <span class="tech-hover-tooltip">Adobe Illustrator</span>
                         </a>
                         <a href="https://www.canva.com/" target="_blank" class="tech-cell" data-tooltip="Canva">
                             <i class="ph ph-palette"></i><span>Canva</span>
+                            <span class="tech-hover-tooltip">Canva</span>
                         </a>
                         <a href="https://github.com/about" target="_blank" class="tech-cell" data-tooltip="Git / GitHub">
                             <i class="ph ph-git-branch"></i><span>Git</span>
+                            <span class="tech-hover-tooltip">Git / GitHub</span>
                         </a>
                         <a href="https://jupyter.org/about" target="_blank" class="tech-cell" data-tooltip="Jupyter">
                             <i class="ph ph-terminal-window"></i><span>Jupyter</span>
+                            <span class="tech-hover-tooltip">Jupyter Notebooks</span>
                         </a>
                     </div>
                 </div>
-            </div>
-
-            <div class="tech-tooltip" id="tech-tooltip">
-                <span id="tooltip-text">Tooltip</span>
-                <div class="tooltip-arrow"></div>
             </div>
         </section>
 
@@ -765,23 +822,65 @@
                         <p>Whether you have a question, an exciting project, or simply want to connect about the latest
                             in AI, feel free to reach out. I'm always open to discussing new opportunities.</p>
 
-                        <div class="social-links">
-                            <a href="https://github.com/Raffy0-1" target="_blank" class="social-icon"><i
-                                    class="ph ph-github-logo"></i></a>
-                            <a href="https://www.linkedin.com/in/abdul-raffy-067153295" target="_blank"
-                                class="social-icon"><i class="ph ph-linkedin-logo"></i></a>
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=abdulraffy0428@gmail.com" target="_blank" class="social-icon"><i
-                                    class="ph ph-envelope-simple"></i></a>
-                            <a href="https://aicadmey.com" target="_blank" class="social-icon"><i
-                                    class="ph ph-globe"></i></a>
-                            <a href="https://youtube.com/@rsraffyyt7531" target="_blank" class="social-icon"><i
-                                    class="ph ph-youtube-logo"></i></a>
-                            <a href="https://instagram.com/abd_xeder" target="_blank" class="social-icon"><i
-                                    class="ph ph-instagram-logo"></i></a>
-                            <a href="https://x.com/Im_Raffy447" target="_blank" class="social-icon"><i
-                                    class="ph ph-twitter-logo"></i></a>
-                            <a href="https://discord.gg/rs_raffy_76142" target="_blank" class="social-icon"><i
-                                    class="ph ph-discord-logo"></i></a>
+                        <div class="iso-socials-card">
+                            <ul class="iso-socials-list">
+                                <li class="iso-pro">
+                                    <span></span><span></span><span></span>
+                                    <a href="https://github.com/Raffy0-1" target="_blank" aria-label="GitHub">
+                                        <div class="iso-icon"><i class="ph ph-github-logo"></i></div>
+                                        <span class="text">GitHub</span>
+                                    </a>
+                                </li>
+                                <li class="iso-pro">
+                                    <span></span><span></span><span></span>
+                                    <a href="https://www.linkedin.com/in/abdul-raffy-067153295" target="_blank" aria-label="LinkedIn">
+                                        <div class="iso-icon"><i class="ph ph-linkedin-logo"></i></div>
+                                        <span class="text">LinkedIn</span>
+                                    </a>
+                                </li>
+                                <li class="iso-pro">
+                                    <span></span><span></span><span></span>
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=abdulraffy.dev@gmail.com" target="_blank" aria-label="Email">
+                                        <div class="iso-icon"><i class="ph ph-envelope-simple"></i></div>
+                                        <span class="text">Email</span>
+                                    </a>
+                                </li>
+                                <li class="iso-pro">
+                                    <span></span><span></span><span></span>
+                                    <a href="https://aicadmey.com" target="_blank" aria-label="Website">
+                                        <div class="iso-icon"><i class="ph ph-globe"></i></div>
+                                        <span class="text">Website</span>
+                                    </a>
+                                </li>
+                                <li class="iso-pro">
+                                    <span></span><span></span><span></span>
+                                    <a href="https://youtube.com/@rsraffyyt7531" target="_blank" aria-label="YouTube">
+                                        <div class="iso-icon"><i class="ph ph-youtube-logo"></i></div>
+                                        <span class="text">YouTube</span>
+                                    </a>
+                                </li>
+                                <li class="iso-pro">
+                                    <span></span><span></span><span></span>
+                                    <a href="https://instagram.com/abd_xeder" target="_blank" aria-label="Instagram">
+                                        <div class="iso-icon"><i class="ph ph-instagram-logo"></i></div>
+                                        <span class="text">Instagram</span>
+                                    </a>
+                                </li>
+                                <li class="iso-pro">
+                                    <span></span><span></span><span></span>
+                                    <a href="https://x.com/Im_Raffy447" target="_blank" aria-label="Twitter">
+                                        <div class="iso-icon"><i class="ph ph-twitter-logo"></i></div>
+                                        <span class="text">Twitter / X</span>
+                                    </a>
+                                </li>
+                                <li class="iso-pro">
+                                    <span></span><span></span><span></span>
+                                    <a href="https://discord.gg/rs_raffy_76142" target="_blank" aria-label="Discord">
+                                        <div class="iso-icon"><i class="ph ph-discord-logo"></i></div>
+                                        <span class="text">Discord</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                         <p style="margin-top: 30px; font-size: 13px; opacity: 0.7;">
                             <strong>Phone:</strong> +92 345 7252529<br>
@@ -810,7 +909,7 @@
                                 <div class="cursor-blink"></div>
                             </div>
                             <button type="submit" class="btn btn-submit btn-liquid btn-dark" id="submit-btn" data-liquid
-                                style="width:100%; border:1px solid #333; margin-top:20px; color:#fff; background:transparent;"><span>SEND MESSAGE</span></button>
+                                style="width:100%; border:1px solid #333; margin-top:20px; background:transparent;"><span>SEND MESSAGE</span></button>
                         </form>
                     </div>
                 </div>

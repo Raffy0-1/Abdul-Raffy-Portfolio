@@ -3,108 +3,41 @@
  * Built with Vanilla JS, GSAP 3, ScrollTrigger, Lenis, Three.js
  */
 
-// 1. Loader Class
+// 1. Loader Class (3D Voxel Intro Loader)
 class SiteLoader {
     constructor() {
         this.loader = document.getElementById('loader');
-        this.counterEl = document.getElementById('loader-count');
-        this.progressCircle = document.querySelector('.loader-circle-progress');
-        this.packetContainer = document.getElementById('data-packets');
-        this.topEl = document.querySelector('.loader-top');
-        this.bottomEl = document.querySelector('.loader-bottom');
-        this.coreWrapper = document.querySelector('.loader-core-wrapper');
-        
-        this.progress = 0;
-        this.circumference = 2 * Math.PI * 45; // r=45
-        
+        this.dismissed = false;
         this.init();
     }
 
     init() {
-        this.startLoader();
-        this.startPacketEmission();
-    }
+        if (!this.loader) {
+            document.dispatchEvent(new Event('site-loaded'));
+            return;
+        }
 
-    startLoader() {
-        const updateCounter = () => {
-            // Non-linear progress for a "processing" feel
-            const increment = Math.random() * (this.progress < 80 ? 8 : 2);
-            this.progress += increment;
-            
-            if (this.progress > 100) this.progress = 100;
-            
-            const p = Math.floor(this.progress);
-            this.counterEl.innerText = p;
-            
-            // Update SVG Ring
-            const offset = this.circumference - (this.progress / 100) * this.circumference;
-            this.progressCircle.style.strokeDashoffset = offset;
-            
-            if (this.progress < 100) {
-                setTimeout(updateCounter, 40 + Math.random() * 120);
-            } else {
-                setTimeout(() => this.revealSite(), 500);
-            }
-        };
-        setTimeout(updateCounter, 200);
-    }
-
-    startPacketEmission() {
-        this.packetInterval = setInterval(() => {
-            if (this.progress >= 100) {
-                clearInterval(this.packetInterval);
-                return;
-            }
-            this.createPacket();
-        }, 150);
-    }
-
-    createPacket() {
-        const packet = document.createElement('div');
-        packet.className = 'packet';
-        this.packetContainer.appendChild(packet);
-
-        // Random starting position (edges)
-        const side = Math.floor(Math.random() * 4);
-        let x, y;
-        if (side === 0) { x = Math.random() * 100; y = -5; } // top
-        else if (side === 1) { x = 105; y = Math.random() * 100; } // right
-        else if (side === 2) { x = Math.random() * 100; y = 105; } // bottom
-        else { x = -5; y = Math.random() * 100; } // left
-
-        packet.style.left = `${x}%`;
-        packet.style.top = `${y}%`;
-
-        gsap.to(packet, {
-            left: '50%',
-            top: '50%',
-            opacity: 1,
-            duration: 1 + Math.random(),
-            ease: "power2.in",
-            onComplete: () => packet.remove()
-        });
-    }
-
-    revealSite() {
-        const tl = gsap.timeline({
-            onComplete: () => {
+        const dismissLoader = () => {
+            if (this.dismissed) return;
+            this.dismissed = true;
+            this.loader.classList.add('loaded');
+            setTimeout(() => {
                 this.loader.remove();
                 document.dispatchEvent(new Event('site-loaded'));
-            }
-        });
+            }, 600);
+        };
 
-        // Graceful reveal sequence
-        tl.to(this.counterEl, { opacity: 0, scale: 0.9, duration: 0.5, ease: "power2.inOut" })
-          .to(this.coreWrapper, { 
-              scale: 15, 
-              opacity: 0, 
-              duration: 1.5, 
-              ease: "power3.inOut" 
-          }, "-=0.2")
-          .to(this.topEl, { y: '-100%', duration: 1.2, ease: "power4.inOut" }, "-=1.2")
-          .to(this.bottomEl, { y: '100%', duration: 1.2, ease: "power4.inOut" }, "<");
+        // Smooth display duration matching the 3D voxel assembly cycle (~2.2s)
+        const timer = setTimeout(dismissLoader, 2200);
+
+        // Allow click anywhere to immediately skip intro loader
+        this.loader.addEventListener('click', () => {
+            clearTimeout(timer);
+            dismissLoader();
+        });
     }
 }
+
 
 
 // 2. Smooth Scroll Manager (Lenis)
@@ -142,11 +75,11 @@ class SmoothScrollManager {
 // 3. Cursor Manager
 class CursorManager {
     constructor() {
-        this.dot = document.getElementById('cursor-dot');
-        this.ring = document.getElementById('cursor-ring');
+        this.cursor = document.getElementById('custom-cursor');
+        if (!this.cursor) return;
         
         this.mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-        this.ringPos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        this.pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
         
         this.initEvents();
         this.render();
@@ -156,24 +89,29 @@ class CursorManager {
         window.addEventListener('mousemove', (e) => {
             this.mouse.x = e.clientX;
             this.mouse.y = e.clientY;
-            
-            // Centered move dot
-            this.dot.style.left = `${this.mouse.x}px`;
-            this.dot.style.top = `${this.mouse.y}px`;
         });
 
-        // Click effect
+        // Click scale feedback
         window.addEventListener('mousedown', () => {
-            gsap.to(this.ring, { scaleX: 1.6, scaleY: 0.6, duration: 0.1 });
+            if (this.cursor) this.cursor.classList.add('clicking');
         });
         window.addEventListener('mouseup', () => {
-            gsap.to(this.ring, { scaleX: 1, scaleY: 1, duration: 0.4, ease: "elastic.out(1, 0.3)" });
+            if (this.cursor) this.cursor.classList.remove('clicking');
+        });
+        window.addEventListener('mouseleave', () => {
+            if (this.cursor) {
+                this.cursor.classList.remove('clicking');
+                this.cursor.style.opacity = '0';
+            }
+        });
+        window.addEventListener('mouseenter', () => {
+            if (this.cursor) this.cursor.style.opacity = '1';
         });
 
         // Hover specific interactions mapping via event delegation
         document.addEventListener('mouseover', (e) => {
             const el = e.target;
-            if (el.closest('a') || el.closest('button')) {
+            if (el.closest('a') || el.closest('button') || el.closest('.filter-btn')) {
                 document.body.classList.add('hover-link');
             }
             if (el.closest('[data-cursor="project"]')) {
@@ -186,7 +124,7 @@ class CursorManager {
 
         document.addEventListener('mouseout', (e) => {
             const el = e.target;
-            if (el.closest('a') || el.closest('button')) {
+            if (el.closest('a') || el.closest('button') || el.closest('.filter-btn')) {
                 document.body.classList.remove('hover-link');
             }
             if (el.closest('[data-cursor="project"]')) {
@@ -199,13 +137,12 @@ class CursorManager {
     }
 
     render() {
-        // Lerp for ring (smooth lag) - approx 80ms lerp delay math -> factor ~0.2 based on 60fps
-        this.ringPos.x += (this.mouse.x - this.ringPos.x) * 0.2;
-        this.ringPos.y += (this.mouse.y - this.ringPos.y) * 0.2;
+        // High-precision smooth follow (factor 0.45 for silky responsiveness without lag)
+        this.pos.x += (this.mouse.x - this.pos.x) * 0.45;
+        this.pos.y += (this.mouse.y - this.pos.y) * 0.45;
         
-        // Centered ring move
-        this.ring.style.left = `${this.ringPos.x}px`;
-        this.ring.style.top = `${this.ringPos.y}px`;
+        this.cursor.style.left = `${this.pos.x}px`;
+        this.cursor.style.top = `${this.pos.y}px`;
         
         requestAnimationFrame(() => this.render());
     }
@@ -462,38 +399,10 @@ class InteractionManager {
     }
 
     initTechTooltips() {
-        const techSection = document.getElementById('tech');
-        if (!techSection) return;
-        
-        const tooltip = document.getElementById('tech-tooltip');
-        const tooltext = document.getElementById('tooltip-text');
-
-        // Only enable floating tooltips on devices with hover capabilities (mice)
-        if (window.matchMedia('(hover: hover)').matches) {
-            techSection.addEventListener('mousemove', (e) => {
-                const cell = e.target.closest('.tech-cell');
-                
-                if (cell) {
-                    const text = cell.getAttribute('data-tooltip') || 'View Tool';
-                    if (tooltext.innerText !== text) {
-                        tooltext.innerText = text;
-                    }
-                    
-                    tooltip.classList.add('visible');
-                    tooltip.style.left = `${e.clientX}px`;
-                    tooltip.style.top = `${e.clientY}px`;
-                } else {
-                    tooltip.classList.remove('visible');
-                }
-            });
-
-            techSection.addEventListener('mouseleave', () => {
-                tooltip.classList.remove('visible');
-            });
-        }
+        // Tech tooltips are handled with pure CSS hover floating animations per modern design reference
     }
 
-    initProjectFilters() {
+        initProjectFilters() {
         const btns = document.querySelectorAll('.filter-btn');
         const cards = document.querySelectorAll('.project-card');
 
