@@ -242,6 +242,8 @@ class InteractionManager {
         this.initContactForm();
         this.initTechTooltips();
         this.initProjectFilters();
+        this.initInkReveal();
+        this.initShowMore();
         this.initCertLightbox();
         
         document.addEventListener('site-loaded', () => {
@@ -402,9 +404,10 @@ class InteractionManager {
         // Tech tooltips are handled with pure CSS hover floating animations per modern design reference
     }
 
-        initProjectFilters() {
+    initProjectFilters() {
         const btns = document.querySelectorAll('.filter-btn');
         const cards = document.querySelectorAll('.project-card');
+        const masonry = document.getElementById('projects-masonry');
 
         btns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -413,15 +416,30 @@ class InteractionManager {
 
                 const filter = btn.getAttribute('data-filter');
 
+                if (masonry) {
+                    if (filter !== 'all') {
+                        masonry.classList.add('is-filtered');
+                    } else {
+                        masonry.classList.remove('is-filtered');
+                    }
+                }
+
                 cards.forEach(card => {
                     card.classList.remove('blurred', 'pulsed');
                     
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.order = "-1";
-                        if (filter !== 'all') {
-                            card.classList.add('pulsed');
-                            setTimeout(()=>card.classList.remove('pulsed'), 300);
+                    if (filter === 'all') {
+                        const isExpanded = masonry && masonry.classList.contains('is-expanded');
+                        if (card.classList.contains('project-card-hidden') && !isExpanded) {
+                            card.classList.remove('is-revealed');
                         }
+                        card.style.order = "0";
+                    } else if (card.getAttribute('data-category') === filter) {
+                        card.style.order = "-1";
+                        if (card.classList.contains('project-card-hidden')) {
+                            card.classList.add('is-revealed');
+                        }
+                        card.classList.add('pulsed');
+                        setTimeout(() => card.classList.remove('pulsed'), 300);
                     } else {
                         card.style.order = "0";
                         card.classList.add('blurred');
@@ -433,6 +451,129 @@ class InteractionManager {
                     ScrollTrigger.refresh();
                 }, 400); // Wait for CSS transitions to finish
             });
+        });
+    }
+
+    initShowMore() {
+        const moreBtn = document.getElementById('projects-more-btn');
+        const masonry = document.getElementById('projects-masonry');
+        const hiddenCards = document.querySelectorAll('.project-card.project-card-hidden');
+        if (!moreBtn || !masonry) return;
+
+        let isExpanded = false;
+
+        moreBtn.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+            moreBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+            moreBtn.classList.toggle('is-active', isExpanded);
+
+            const btnText = moreBtn.querySelector('.btn-text');
+
+            if (isExpanded) {
+                masonry.classList.add('is-expanded');
+                hiddenCards.forEach((card, idx) => {
+                    setTimeout(() => {
+                        card.classList.add('is-revealed');
+                    }, idx * 60);
+                });
+                if (btnText) btnText.textContent = 'SHOW LESS (5)';
+            } else {
+                masonry.classList.remove('is-expanded');
+                hiddenCards.forEach(card => {
+                    card.classList.remove('is-revealed');
+                });
+                if (btnText) btnText.textContent = 'VIEW ALL PROJECTS (10)';
+
+                const projectsSection = document.getElementById('projects');
+                if (projectsSection) {
+                    const rect = projectsSection.getBoundingClientRect();
+                    if (rect.top < -50) {
+                        projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            }
+
+            // Refresh ScrollTrigger as page height changed
+            setTimeout(() => {
+                if (window.ScrollTrigger) ScrollTrigger.refresh();
+            }, 350);
+        });
+    }
+
+    initInkReveal() {
+        const cards = document.querySelectorAll('.project-card');
+        
+        cards.forEach(card => {
+            const topSection = card.querySelector('.top-section');
+            if (topSection && !card.querySelector('.ink-reveal')) {
+                const title = card.querySelector('.bottom-section .title')?.textContent?.trim() || '';
+                const desc = card.querySelector('.bottom-section .description')?.textContent?.trim() || '';
+                const category = card.getAttribute('data-category')?.toUpperCase() || 'RESEARCH';
+
+                // Extract authentic links from the card
+                const links = Array.from(card.querySelectorAll('.social-media a, .card-link-item'));
+                const githubA = links.find(a => a.href && a.href.includes('github.com'));
+                const demoA = links.find(a => a.href && !a.href.includes('github.com') && a.href !== '#' && !a.href.startsWith('javascript'));
+
+                let actionsHtml = '';
+                if (githubA && githubA.href) {
+                    actionsHtml += `<a href="${githubA.href}" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub for ${title}">
+                        <svg class="svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        Source
+                    </a>`;
+                }
+                if (demoA && demoA.href) {
+                    actionsHtml += `<a href="${demoA.href}" target="_blank" rel="noopener noreferrer" aria-label="Open live project link for ${title}">
+                        <svg class="svg" viewBox="0 0 24 24"><path d="M14 3h7v7h-2v-3.586l-9.293 9.293-1.414-1.414 9.293-9.293h-3.586v-2zm-10 2h6v2h-6v14h14v-6h2v6c0 1.105-.895 2-2 2h-14c-1.105 0-2-.895-2-2v-14c0-1.105.895-2 2-2z"/></svg>
+                        Demo
+                    </a>`;
+                } else if (githubA && githubA.href) {
+                    actionsHtml += `<a href="${githubA.href}" target="_blank" rel="noopener noreferrer" aria-label="Open project repository for ${title}">
+                        <svg class="svg" viewBox="0 0 24 24"><path d="M14 3h7v7h-2v-3.586l-9.293 9.293-1.414-1.414 9.293-9.293h-3.586v-2zm-10 2h6v2h-6v14h14v-6h2v6c0 1.105-.895 2-2 2h-14c-1.105 0-2-.895-2-2v-14c0-1.105.895-2 2-2z"/></svg>
+                        Explore
+                    </a>`;
+                }
+
+                const reveal = document.createElement('div');
+                reveal.className = 'ink-reveal';
+                reveal.innerHTML = `
+                    <span class="ink-category">// ${category}</span>
+                    <h4 class="ink-title">${title}</h4>
+                    <p class="ink-desc">${desc}</p>
+                    <div class="ink-actions">${actionsHtml}</div>
+                `;
+                topSection.appendChild(reveal);
+            }
+
+            // Decorative board-pin
+            if (!card.querySelector('.board-pin')) {
+                const pin = document.createElement('div');
+                pin.className = 'board-pin';
+                pin.setAttribute('aria-hidden', 'true');
+                card.appendChild(pin);
+            }
+
+            // Accessible keyboard focus support
+            if (!card.hasAttribute('tabindex')) {
+                card.setAttribute('tabindex', '0');
+            }
+
+            // Touch device tap-to-reveal toggle
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('a') || e.target.closest('button')) return;
+                const wasRevealed = card.classList.contains('revealed');
+                cards.forEach(c => c.classList.remove('revealed'));
+                if (!wasRevealed) {
+                    card.classList.add('revealed');
+                }
+            });
+        });
+
+        // Close revealed cards when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.project-card')) {
+                cards.forEach(c => c.classList.remove('revealed'));
+            }
         });
     }
 
@@ -569,12 +710,13 @@ class ScrollAnimations {
                 }
             );
 
-            // 6. Projects Cards Drop (elastic ease)
-            gsap.fromTo('.project-card', 
-                { y: 100, opacity: 0 },
-                { scrollTrigger: { trigger: '#projects-masonry', start: "top 70%", toggleActions: "play reverse play reverse" },
+            // 6. Projects Cards Reveal (Smooth, 60fps one-time reveal, clears transforms for native CSS hover)
+            gsap.fromTo('.project-card:not(.project-card-hidden)', 
+                { y: 35, opacity: 0 },
+                { scrollTrigger: { trigger: '#projects-masonry', start: "top 80%", once: true },
                   y: 0, opacity: 1,
-                  duration: 1.2, stagger: 0.1, ease: "back.out(1.4)"
+                  duration: 0.6, stagger: 0.08, ease: "power2.out",
+                  clearProps: "transform"
                 }
             );
 
